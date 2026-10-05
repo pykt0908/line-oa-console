@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="th"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Multi LINE OA Chat Archive &amp; Live Chat</title>
+<!-- Google Fonts: Noto Sans & Noto Sans Thai -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&amp;family=Noto+Sans+Thai:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "outline": "#6e7b6c",
+            "tertiary-fixed-dim": "#b4c5ff",
+            "tertiary-container": "#316bf3",
+            "on-error-container": "#93000a",
+            "on-tertiary-fixed": "#00174b",
+            "primary-container": "#00873a",
+            "surface-bright": "#f8f9ff",
+            "on-tertiary-container": "#fefcff",
+            "inverse-surface": "#213145",
+            "on-tertiary": "#ffffff",
+            "surface-container": "#e5eeff",
+            "on-surface-variant": "#3e4a3d",
+            "on-tertiary-fixed-variant": "#003ea8",
+            "surface-dim": "#cbdbf5",
+            "secondary-fixed": "#95f8a7",
+            "surface": "#f8f9ff",
+            "secondary-fixed-dim": "#79db8d",
+            "background": "#f8f9ff",
+            "on-surface": "#0b1c30",
+            "surface-container-high": "#dce9ff",
+            "primary-fixed": "#7ffc97",
+            "primary-fixed-dim": "#62df7d",
+            "surface-variant": "#d3e4fe",
+            "error": "#ba1a1a",
+            "on-secondary-container": "#007233",
+            "on-primary-fixed": "#002109",
+            "error-container": "#ffdad6",
+            "secondary-container": "#92f5a4",
+            "on-primary-fixed-variant": "#005320",
+            "inverse-primary": "#62df7d",
+            "surface-container-highest": "#d3e4fe",
+            "on-error": "#ffffff",
+            "on-background": "#0b1c30",
+            "surface-container-low": "#eff4ff",
+            "on-secondary-fixed": "#00210a",
+            "on-primary-container": "#f7fff2",
+            "inverse-on-surface": "#eaf1ff",
+            "tertiary": "#0051d5",
+            "surface-container-lowest": "#ffffff",
+            "outline-variant": "#bdcaba",
+            "on-secondary-fixed-variant": "#005323",
+            "secondary": "#006d30",
+            "on-secondary": "#ffffff",
+            "primary": "#006b2c",
+            "tertiary-fixed": "#dbe1ff",
+            "on-primary": "#ffffff",
+            "surface-tint": "#006e2d"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "space-md": "12px",
+            "space-xl": "24px",
+            "space-xs": "4px",
+            "space-sm": "8px",
+            "margin": "0px",
+            "gutter": "0px",
+            "space-lg": "16px"
+          },
+          "fontFamily": {
+            "headline-md": ["Noto Sans", "Noto Sans Thai", "sans-serif"],
+            "label-md": ["Noto Sans", "Noto Sans Thai", "sans-serif"],
+            "label-sm": ["Noto Sans", "Noto Sans Thai", "sans-serif"],
+            "body-lg": ["Noto Sans", "Noto Sans Thai", "sans-serif"],
+            "body-md": ["Noto Sans", "Noto Sans Thai", "sans-serif"],
+            "body-sm": ["Noto Sans", "Noto Sans Thai", "sans-serif"],
+            "headline-lg": ["Noto Sans", "Noto Sans Thai", "sans-serif"],
+            "label-lg": ["Noto Sans", "Noto Sans Thai", "sans-serif"],
+            "headline-xl": ["Noto Sans", "Noto Sans Thai", "sans-serif"]
+          },
+          "fontSize": {
+            "headline-md": ["15px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "600" }],
+            "label-md": ["11px", { "lineHeight": "14px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "label-sm": ["10px", { "lineHeight": "12px", "letterSpacing": "0.03em", "fontWeight": "700" }],
+            "body-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "body-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "body-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "headline-lg": ["18px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "label-lg": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "headline-xl": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+      line-height: 1;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+  </style>
+</head>
+<body class="h-full bg-background text-on-surface antialiased overflow-hidden flex flex-col font-body-md text-body-md select-none">
+<!-- ================= TOP APP BAR (from Shared Components JSON: TopNavBar) ================= -->
+<header class="sticky top-0 h-14 w-full flex items-center justify-between px-4 z-20 bg-surface-container-lowest border-b border-outline-variant flex-shrink-0">
+<!-- Left: Brand Title & Global Search -->
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-primary text-on-primary flex items-center justify-center font-bold font-headline-md text-headline-md shadow-sm">
+          L
+        </div>
+<div>
+<h1 class="text-headline-md font-headline-md font-bold text-on-surface tracking-tight leading-none">LINE OA Institutional Console</h1>
+<p class="text-label-sm font-label-sm text-outline mt-0.5">Multi-Tenant Desk (ศูนย์รวมการจัดการข้อความองค์กร)</p>
+</div>
+</div>
+<!-- Quick Search Bar -->
+<div class="relative w-80">
+<span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined text-[18px]" data-icon="search">search</span>
+</span>
+<input class="w-full pl-9 pr-4 py-1.5 bg-surface rounded border border-outline-variant text-body-sm font-body-sm text-on-surface placeholder:text-outline focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" placeholder="ค้นหาทั่วทั้งระบบ (ชื่อ, รหัสนักศึกษา, ข้อความ)..." type="text"/>
+</div>
+</div>
+<!-- Right: Status Actions & Staff Profile -->
+<div class="flex items-center gap-3">
+<!-- Secondary OA Switcher Action -->
+<button class="flex items-center gap-1.5 px-3 py-1.5 rounded bg-surface border border-outline-variant hover:bg-surface-container-low text-on-surface font-label-md text-label-md transition-colors">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span>Switch OA</span>
+<span class="material-symbols-outlined text-[16px] text-outline" data-icon="arrow_drop_down">arrow_drop_down</span>
+</button>
+<!-- Trailing Action Icons -->
+<div class="flex items-center border-l border-r border-outline-variant px-2 gap-1">
+<button class="p-1.5 text-outline hover:text-on-surface hover:bg-surface-container-low rounded transition-colors relative" title="Notifications">
+<span class="material-symbols-outlined text-[20px]" data-icon="notifications">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full ring-2 ring-surface-container-lowest"></span>
+</button>
+<button class="p-1.5 text-outline hover:text-on-surface hover:bg-surface-container-low rounded transition-colors" title="Sync">
+<span class="material-symbols-outlined text-[20px]" data-icon="sync">sync</span>
+</button>
+<button class="p-1.5 text-outline hover:text-on-surface hover:bg-surface-container-low rounded transition-colors" title="Filter List">
+<span class="material-symbols-outlined text-[20px]" data-icon="filter_list">filter_list</span>
+</button>
+</div>
+<!-- Online Indicator & Staff Status -->
+<div class="flex items-center gap-2 pl-1">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-secondary-container text-on-secondary-container text-label-md font-label-md border border-secondary-fixed">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+<span>Online</span>
+</span>
+<div class="flex items-center gap-2 pl-2">
+<img alt="Active Staff Avatar" class="w-8 h-8 rounded-full border border-outline-variant object-cover" data-alt="Staff profile portrait of an Asian male university academic counselor wearing formal attire in a bright institutional office setting with clean architectural lines." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5BVIuKzwVyJHwbCDS5lJw7N71NFwHbylCtZTtiK2rNqOvFkZZAGYlZPDdcZ9vN11jO-l-y59JSQukS_J8APVYg3gAe3RVgvLxHQm25NVbgJqlHuqEiydXaEmerRDvajD5cax_hQVJE-a-g0EmVySuMihVjbSDcJMmVWUduqUeDbT2R94PtT7ZvnhAXSrdjURSMm5cDouHY2IYEA2libhmeYsQpY8rlSYCP9BF9EYaofnDDzAZGAhQdQ"/>
+<div class="leading-tight">
+<span class="block text-body-sm font-semibold text-on-surface">อ.กิตติ เมธาการ</span>
+<span class="block text-label-sm font-label-sm text-outline">เจ้าหน้าที่วิชาการ</span>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- ================= MAIN 4-PANE WORKSPACE ================= -->
+<div class="flex-1 flex overflow-hidden w-full h-[calc(100vh-3.5rem)]">
+<!-- ================= PANE 0: Collapsed Mini App Rail / SideNavBar (from JSON) ================= -->
+<nav aria-label="Main Navigation" class="w-16 flex-shrink-0 bg-surface-container-low border-r border-outline-variant flex flex-col justify-between items-center py-3 z-30">
+<!-- Top Brand Mark & Primary Nav Group -->
+<div class="flex flex-col items-center gap-4 w-full">
+<!-- Brand Emblem -->
+<div class="w-10 h-10 rounded bg-primary flex items-center justify-center text-on-primary shadow-sm" title="LINE Console">
+<span class="material-symbols-outlined text-[22px]" data-icon="hub">hub</span>
+</div>
+<div class="w-8 h-[1px] bg-outline-variant my-1"></div>
+<!-- Rail Navigation Items (Exact JSON Tabs: Dashboard, Inbox, Contacts, LINE OA, Users, Reports, Settings) -->
+<div class="flex flex-col items-center gap-1.5 w-full px-2">
+<!-- Tab 1: Dashboard -->
+<button class="w-11 h-10 rounded flex flex-col items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" title="Dashboard">
+<span class="material-symbols-outlined text-[20px]" data-icon="dashboard">dashboard</span>
+<span class="text-[9px] font-label-sm mt-0.5">ภาพรวม</span>
+</button>
+<!-- Tab 2: Inbox (ACTIVE STATE) -->
+<button class="w-11 h-10 rounded flex flex-col items-center justify-center bg-surface text-primary font-semibold border-l-4 border-primary rounded-r shadow-xs relative" title="Inbox">
+<span class="material-symbols-outlined text-[20px]" data-icon="inbox">inbox</span>
+<span class="text-[9px] font-label-sm mt-0.5">Inbox</span>
+<span class="absolute -top-1 -right-1 px-1 min-w-[16px] h-4 bg-error text-on-error rounded-full text-[9px] font-bold flex items-center justify-center">12</span>
+</button>
+<!-- Tab 3: Contacts -->
+<button class="w-11 h-10 rounded flex flex-col items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" title="Contacts">
+<span class="material-symbols-outlined text-[20px]" data-icon="contacts">contacts</span>
+<span class="text-[9px] font-label-sm mt-0.5">รายชื่อ</span>
+</button>
+<!-- Tab 4: LINE OA -->
+<button class="w-11 h-10 rounded flex flex-col items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" title="LINE OA">
+<span class="material-symbols-outlined text-[20px]" data-icon="hub">hub</span>
+<span class="text-[9px] font-label-sm mt-0.5">OA ช่อง</span>
+</button>
+<!-- Tab 5: Users -->
+<button class="w-11 h-10 rounded flex flex-col items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" title="Users">
+<span class="material-symbols-outlined text-[20px]" data-icon="group">group</span>
+<span class="text-[9px] font-label-sm mt-0.5">ผู้ใช้</span>
+</button>
+<!-- Tab 6: Reports -->
+<button class="w-11 h-10 rounded flex flex-col items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" title="Reports">
+<span class="material-symbols-outlined text-[20px]" data-icon="bar_chart">bar_chart</span>
+<span class="text-[9px] font-label-sm mt-0.5">รายงาน</span>
+</button>
+<!-- Tab 7: Settings -->
+<button class="w-11 h-10 rounded flex flex-col items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" title="Settings">
+<span class="material-symbols-outlined text-[20px]" data-icon="settings">settings</span>
+<span class="text-[9px] font-label-sm mt-0.5">ตั้งค่า</span>
+</button>
+</div>
+</div>
+<!-- Rail Footer: Help & System Health (JSON matches) -->
+<div class="flex flex-col items-center gap-2 w-full px-2 border-t border-outline-variant pt-3">
+<button class="w-10 h-10 rounded flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" title="Help &amp; Support">
+<span class="material-symbols-outlined text-[20px]" data-icon="help">help</span>
+</button>
+<button class="w-10 h-10 rounded flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" title="DNS / Gateway Online">
+<span class="material-symbols-outlined text-[20px]" data-icon="dns">dns</span>
+</button>
+</div>
+</nav>
+<!-- ================= PANE 1: Conversation List Column (Width: 340px) ================= -->
+<section aria-label="Conversation Threads" class="w-[340px] flex-shrink-0 bg-surface-container-lowest border-r border-outline-variant flex flex-col h-full">
+<!-- Column Header & Tenant OA Selector -->
+<div class="p-3 border-b border-outline-variant bg-surface flex flex-col gap-2.5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<h2 class="font-headline-lg text-headline-lg font-bold text-on-surface">กล่องข้อความ (Inbox)</h2>
+<span class="px-2 py-0.5 bg-error text-on-error rounded-full text-label-sm font-label-sm">12</span>
+</div>
+<button class="p-1 rounded text-outline hover:text-on-surface hover:bg-surface-container transition-colors" title="สร้าง Broadcast ใหม่">
+<span class="material-symbols-outlined text-[18px]" data-icon="add_circle">add_circle</span>
+</button>
+</div>
+<!-- LINE OA Filter Dropdown -->
+<div class="relative">
+<div class="w-full flex items-center justify-between px-2.5 py-1.5 rounded bg-surface-container-lowest border border-outline-variant text-body-sm font-body-sm cursor-pointer hover:border-primary transition-colors">
+<div class="flex items-center gap-2 overflow-hidden">
+<span class="material-symbols-outlined text-primary text-[16px]" data-icon="filter_alt">filter_alt</span>
+<span class="font-semibold text-on-surface truncate">ทุกบัญชี LINE OA (20)</span>
+</div>
+<span class="material-symbols-outlined text-outline text-[18px]" data-icon="arrow_drop_down">arrow_drop_down</span>
+</div>
+<!-- Color dot mini bar showing accounts -->
+<div class="flex items-center gap-3 mt-1.5 px-1 text-[11px] font-label-md text-outline">
+<span class="inline-flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span> วิชาการ: <b>8</b>
+</span>
+<span class="inline-flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-blue-500"></span> ทะเบียน: <b>7</b>
+</span>
+<span class="inline-flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-purple-500"></span> IT: <b>5</b>
+</span>
+</div>
+</div>
+<!-- Fast Filter Chips -->
+<div class="flex items-center gap-1 overflow-x-auto custom-scrollbar pb-1 text-label-md font-label-md">
+<button class="px-2.5 py-1 rounded bg-on-surface text-on-error font-semibold flex-shrink-0">ทั้งหมด</button>
+<button class="px-2.5 py-1 rounded bg-surface border border-outline-variant text-outline hover:text-on-surface hover:bg-surface-container flex-shrink-0">ยังไม่อ่าน (5)</button>
+<button class="px-2.5 py-1 rounded bg-emerald-50 text-emerald-800 border border-emerald-200 flex-shrink-0 font-medium">Open (14)</button>
+<button class="px-2.5 py-1 rounded bg-amber-50 text-amber-800 border border-amber-200 flex-shrink-0 font-medium">Pending (3)</button>
+<button class="px-2.5 py-1 rounded bg-surface border border-outline-variant text-outline hover:text-on-surface hover:bg-surface-container flex-shrink-0">Resolved</button>
+</div>
+<!-- Search Input with Student ID prompt -->
+<div class="relative">
+<span class="absolute inset-y-0 left-0 pl-2.5 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined text-[16px]" data-icon="search">search</span>
+</span>
+<input class="w-full pl-8 pr-3 py-1.5 bg-surface-container-lowest rounded border border-outline-variant text-body-sm font-body-sm placeholder:text-outline text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary" placeholder="🔍 ค้นหาชื่อ LINE, รหัสนักศึกษา..." type="text"/>
+</div>
+</div>
+<!-- Thread List Rows (Height 68px item blocks with vertical layout) -->
+<div class="flex-1 overflow-y-auto custom-scrollbar divide-y divide-outline-variant/60">
+<!-- Thread 1: SELECTED / ACTIVE -->
+<div class="p-3 bg-surface-container-lowest border-l-4 border-primary relative cursor-pointer hover:bg-surface transition-colors">
+<div class="flex items-start gap-2.5">
+<div class="relative flex-shrink-0">
+<img alt="Bank Avatar" class="w-10 h-10 rounded-full object-cover border border-outline-variant" data-alt="Close-up avatar thumbnail portrait of an Asian university male student with neat hair and friendly expression." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4yDuCnxM0w6AJyQn4jc66NN7Rz_trXUtPc7kKI3kH2E2qRAYP-H7aykvgzM6VqKNksBEPeGxSWLifaCotCW4a8qYxtbC49o8mqjRT2hGhC5-KMw153VeV653MCOi0uT_eJ6eE47aCXA2ByRnDE_hYRSzWYZz-8RvJJ8tn6EiieyP0tK5-iOM6eom7X0XQyguB5omkfDCjoAh3XrYvankNbMWMfg8cRcMRBvQAGtsA45b5GpEfjHjDGQ"/>
+<span class="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-emerald-500 border-2 border-surface-container-lowest"></span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5 truncate">
+<span class="font-headline-md text-headline-md font-bold text-on-surface truncate">Bank</span>
+<span class="px-1.5 py-0.2 bg-emerald-50 text-emerald-800 border border-emerald-200 rounded text-[10px] font-bold tracking-tight">68001234</span>
+</div>
+<span class="text-[11px] font-label-md text-outline flex-shrink-0">10:35</span>
+</div>
+<!-- OA Tag Indicator -->
+<div class="flex items-center gap-1 mt-0.5">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+<span class="text-[11px] font-label-md text-emerald-700 font-medium">งานวิชาการ</span>
+</div>
+<!-- Message Preview & Unread Badge -->
+<div class="flex items-center justify-between mt-1">
+<p class="text-body-sm font-body-sm text-on-surface truncate pr-2">อาจารย์ครับ ขอสอบถามเรื่องฝึกงานครับ</p>
+<span class="px-1.5 min-w-[18px] h-[18px] rounded-full bg-primary text-on-primary text-[10px] font-bold flex items-center justify-center flex-shrink-0">2</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Thread 2: Unspecified Student ID (Friendly neutral warning) -->
+<div class="p-3 bg-surface hover:bg-surface-container-low cursor-pointer transition-colors border-l-4 border-transparent">
+<div class="flex items-start gap-2.5">
+<div class="relative flex-shrink-0">
+<img alt="Som Avatar" class="w-10 h-10 rounded-full object-cover border border-outline-variant" data-alt="Portrait avatar of a young woman with gentle expression in casual university attire on soft warm background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxLe3a5R6FXir3-yUp60IK2vCNTuRIAP8mzPJrLOvTNv9MaIuawP-J3PKK1DV5T47F9L6mNV2vuePYFKr3J6VSBDuOpAWi5fb74Exe08oZdOQMxg9-qUQJcBLYO05vxlbnlmKRzlwRj_CEdafmP0yNy0wAwWQaDP_-tPrwDHrGQZ07wscuKGAaRQtDgvE_fuxrPxQpea_aOSJggCtyAxZq3BllCzsOq48bXPZ3fF4wkG_7JQBnRFKolg"/>
+<span class="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-blue-500 border-2 border-surface-container-lowest"></span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between">
+<span class="font-headline-md text-headline-md font-semibold text-on-surface truncate">Som</span>
+<span class="text-[11px] font-label-md text-outline flex-shrink-0">10:30</span>
+</div>
+<!-- OA Tag & Friendly Neutral Badge -->
+<div class="flex items-center gap-1.5 mt-0.5">
+<div class="flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+<span class="text-[11px] font-label-md text-blue-700 font-medium">งานทะเบียน</span>
+</div>
+<span class="px-1.5 py-0.2 bg-amber-50 text-amber-800 border border-amber-200 rounded text-[10px] font-medium flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[11px]" data-icon="info">info</span> ยังไม่ระบุรหัสนักศึกษา
+                </span>
+</div>
+<!-- Message Preview -->
+<div class="flex items-center justify-between mt-1">
+<p class="text-body-sm font-body-sm text-outline truncate pr-2">ขอสอบถามเรื่องเอกสารรับรองครับ</p>
+<span class="material-symbols-outlined text-[16px] text-outline" data-icon="done_all">done_all</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Thread 3: IT Support Student -->
+<div class="p-3 bg-surface hover:bg-surface-container-low cursor-pointer transition-colors border-l-4 border-transparent">
+<div class="flex items-start gap-2.5">
+<div class="relative flex-shrink-0">
+<img alt="Bee Avatar" class="w-10 h-10 rounded-full object-cover border border-outline-variant" data-alt="Avatar photo of an Asian student wearing glasses smiling against a modern classroom backdrop." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcL7MEGSKLUQaLgX79ciYeXVK0UJLC7Z3T5L-7E7bgjjemwkHeHFKEw_kZ-32Z9Y3I4p969Mw4uiqZh9TUdxYtMQLk3dfI3OnQjTY5pIqbdcHH2cJoI5L4-sP5R6vQkP--arHagDkM4oF4O-88USqLOhc8IZt-r0SZwcAWN5ZMMEdN0Ch5uA3BfpL438U12F9MHz4TTqMNkk7p5KrsVlZs35oYNV_rMUtMdDmRS1Psus5Becm4UmApkA"/>
+<span class="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-purple-500 border-2 border-surface-container-lowest"></span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5 truncate">
+<span class="font-headline-md text-headline-md font-semibold text-on-surface truncate">Bee (สมใจ)</span>
+<span class="px-1.5 py-0.2 bg-slate-100 text-slate-700 border border-slate-200 rounded text-[10px] font-mono">67004567</span>
+</div>
+<span class="text-[11px] font-label-md text-outline flex-shrink-0">09:45</span>
+</div>
+<!-- OA Tag -->
+<div class="flex items-center gap-1 mt-0.5">
+<span class="w-1.5 h-1.5 rounded-full bg-purple-500"></span>
+<span class="text-[11px] font-label-md text-purple-700 font-medium">IT Support</span>
+</div>
+<!-- Message Preview -->
+<div class="flex items-center justify-between mt-1">
+<p class="text-body-sm font-body-sm text-outline truncate pr-2">เข้า WiFi อาคาร 4 ไม่ได้ครับ รบกวนรีเซ็ต...</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Thread 4: Pending Status Thread -->
+<div class="p-3 bg-surface hover:bg-surface-container-low cursor-pointer transition-colors border-l-4 border-transparent">
+<div class="flex items-start gap-2.5">
+<div class="relative flex-shrink-0">
+<img alt="Kittisak Avatar" class="w-10 h-10 rounded-full object-cover border border-outline-variant" data-alt="Avatar photo of a confident Asian young adult male in a formal collared shirt." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHIUNxH9wJwY85v_mjAoiquslJVgbP_H2MHOsSx9aUfWilqV1-aO7I9z_xSmxHqPwh2R6UAwK4CtVQRuiK1TvtDHnNOn57HqFoJsNhYkcDZXBsugV2Gf2xrQqe7Pd6bdHQ-q7qp-9QKwZqCp4lOokfyWIxIpSfpBipx1B-Gnx-DJVy0AqOt3gT_3oajnPzwNhM9KuPrRV8RT-lJqezQP4-mS5PZZHGybXiecpYg31Mdz1T-OlAsTwvJg"/>
+<span class="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-emerald-500 border-2 border-surface-container-lowest"></span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5 truncate">
+<span class="font-headline-md text-headline-md font-semibold text-on-surface truncate">Kittisak</span>
+<span class="px-1.5 py-0.2 bg-slate-100 text-slate-700 border border-slate-200 rounded text-[10px] font-mono">65008910</span>
+</div>
+<span class="text-[11px] font-label-md text-outline flex-shrink-0">09:12</span>
+</div>
+<!-- OA Tag & Status Chip -->
+<div class="flex items-center justify-between mt-0.5">
+<div class="flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+<span class="text-[11px] font-label-md text-emerald-700 font-medium">งานวิชาการ</span>
+</div>
+<span class="px-1.5 py-0.2 bg-amber-50 text-amber-900 border border-amber-300 rounded text-[10px] font-semibold">Pending</span>
+</div>
+<!-- Message Preview -->
+<div class="flex items-center justify-between mt-1">
+<p class="text-body-sm font-body-sm text-outline truncate pr-2">ส่งแบบคำร้องขอผ่อนผันแล้วครับ</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ================= PANE 2: Active Conversation Stage (Flex 1 Center Pane) ================= -->
+<main class="flex-1 flex flex-col bg-background h-full min-w-0 border-r border-outline-variant relative">
+<!-- Pinned Chat Header -->
+<div class="h-16 px-4 bg-surface-container-lowest border-b border-outline-variant flex items-center justify-between flex-shrink-0 z-10 shadow-xs">
+<!-- Contact Meta & Student Identifier -->
+<div class="flex items-center gap-3">
+<div class="relative">
+<img alt="Bank Profile" class="w-10 h-10 rounded-full object-cover border border-outline-variant" data-alt="High resolution profile image of a young university student named Bank looking directly at the camera with clear lighting and friendly posture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIj41A6mCT_GcMteZVRVp-1oWd19B6Tn3hoo9GBqKQzMvRJEfweqgPIKfCjtgCe46eNsGML1da50LEAJ8aadVt8xs7uN3uUZv8pAT2S9qsLUS2-2FMzskd7Ct6286pM3EUGwaq9cV4pQLf84lrmfRZl0soLsJCdb_Z3A8DHzWFCCy4eWz0emO2jNI1X8_YCgP2CH1oIh0EUiwlH0qtPYJHGrDbce7OhNZwNwxXThLx31WVuqjAOnEtSQ"/>
+<span class="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-500 border-2 border-surface-container-lowest"></span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h2 class="text-headline-lg font-headline-lg font-bold text-on-surface">Bank</h2>
+<!-- Student Code Verified Pill -->
+<span class="inline-flex items-center gap-1 px-2 py-0.5 bg-emerald-50 text-emerald-800 border border-emerald-300 rounded text-label-md font-label-md">
+<span class="material-symbols-outlined text-[13px] text-emerald-700" data-icon="check_circle">check_circle</span>
+<span>รหัส: 68001234</span>
+</span>
+<!-- LINE OA Channel Pill -->
+<span class="inline-flex items-center gap-1 px-2 py-0.5 bg-slate-100 text-slate-700 border border-slate-200 rounded text-label-md font-label-md">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+<span>LINE OA: งานวิชาการ</span>
+</span>
+</div>
+<p class="text-label-sm font-label-sm text-outline mt-0.5">LINE User ID: U89f3a91bc7829a39 · Active ผ่าน LINE Messaging API</p>
+</div>
+</div>
+<!-- Chat Header Controls / Dropdowns -->
+<div class="flex items-center gap-2">
+<!-- Assigned Dropdown -->
+<div class="flex items-center gap-1 px-2.5 py-1.5 bg-surface border border-outline-variant rounded hover:bg-surface-container-low text-body-sm font-body-sm cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-[16px] text-outline" data-icon="person">person</span>
+<span class="text-on-surface">ผู้รับผิดชอบ: <b>อ.กิตติ</b></span>
+<span class="material-symbols-outlined text-[16px] text-outline" data-icon="arrow_drop_down">arrow_drop_down</span>
+</div>
+<!-- Status Dropdown -->
+<div class="flex items-center gap-1 px-2.5 py-1.5 bg-emerald-50 border border-emerald-300 rounded text-emerald-800 text-body-sm font-body-sm font-semibold cursor-pointer hover:bg-emerald-100 transition-colors">
+<span class="w-2 h-2 rounded-full bg-emerald-600"></span>
+<span>สถานะ: Open</span>
+<span class="material-symbols-outlined text-[16px] text-emerald-700" data-icon="arrow_drop_down">arrow_drop_down</span>
+</div>
+<!-- More Options -->
+<button class="p-1.5 rounded text-outline hover:text-on-surface hover:bg-surface transition-colors" title="ตัวเลือกเพิ่มเติม">
+<span class="material-symbols-outlined text-[20px]" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+</div>
+<!-- UX Rule #1 Affirmative Indication Bar: Explicit Channel Announcement -->
+<div class="bg-emerald-50/90 border-b border-emerald-200 px-4 py-1.5 flex items-center justify-between text-body-sm font-body-sm text-emerald-900 flex-shrink-0">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-emerald-700" data-icon="campaign">campaign</span>
+<span>กำลังตอบกลับผ่าน LINE Official Account: <strong class="underline decoration-emerald-500">งานวิชาการ (Academic Affairs)</strong></span>
+</div>
+<div class="flex items-center gap-2 text-label-sm font-label-sm text-emerald-800">
+<span>โหมด: ข้อความถึงผู้ใช้รายบุคคล (1-on-1 Chat)</span>
+<span class="w-1 h-1 rounded-full bg-emerald-400"></span>
+<span>Latency: 42ms</span>
+</div>
+</div>
+<!-- Message Timeline (Scrollable Viewport) -->
+<div class="flex-1 overflow-y-auto custom-scrollbar p-4 space-y-4 bg-slate-50/50">
+<!-- Older message loader notice (Pagination cursor) -->
+<div class="text-center my-2">
+<button class="inline-flex items-center gap-1.5 px-3 py-1 bg-surface-container-lowest border border-outline-variant text-outline rounded text-label-md font-label-md hover:text-on-surface hover:bg-surface transition-colors shadow-2xs">
+<span class="material-symbols-outlined text-[14px]" data-icon="history">history</span>
+<span>โหลดข้อความก่อนหน้า (Loading older messages...)</span>
+</button>
+</div>
+<!-- Date Separator -->
+<div class="flex items-center my-4">
+<div class="flex-1 h-[1px] bg-outline-variant/60"></div>
+<span class="px-3 text-label-md font-label-md text-outline bg-surface-container-lowest border border-outline-variant rounded-full py-0.5">
+            วันนี้ (4 ต.ค. 2569)
+          </span>
+<div class="flex-1 h-[1px] bg-outline-variant/60"></div>
+</div>
+<!-- Inbound Message Bubble 1 (Student Bank) -->
+<div class="flex items-start gap-2.5 max-w-[75%]">
+<img alt="Bank" class="w-7 h-7 rounded-full object-cover border border-outline-variant mt-1 flex-shrink-0" data-alt="Student profile icon in small circle for message timeline inbound display." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtBL9cQMniM1Uj_S5MGHCxwjdbQAU6-QUgrZJp4IBRttSRRWCY4_5jsMzTSVB97laglAAkJxn1y5kzWb7MYXg5LgqIOOCRx_qNtjP1eX_DCZkr2xRZkf9tqzSPMtp5L7XwLOaUFViJyXXUhfBDjl5Is8dLMqLX_dm_UHHaCQAWZmrvseNt70vnrPdwjc_NbDgqZU0opOzP8ET02WYemBxdEfxePIGE_OvBwahmYjq4wiHwxZOUKPq_xA"/>
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="text-label-md font-label-md font-semibold text-on-surface">Bank (นักศึกษา)</span>
+<span class="text-[10px] text-outline">10:30 น.</span>
+</div>
+<div class="p-3 bg-surface-container-lowest border border-outline-variant rounded-lg rounded-tl-none shadow-xs text-on-surface text-body-md font-body-md leading-relaxed">
+              อาจารย์ครับ ขอสอบถามเรื่องการยื่นเอกสารฝึกงานภาคฤดูร้อนรอบ 2 ครับ ต้องส่งภายในวันไหนครับ
+            </div>
+<span class="text-[10px] text-outline mt-0.5 block">อ่านแล้ว 10:31 น.</span>
+</div>
+</div>
+<!-- Outbound Message Bubble 1 (Staff อ.กิตติ via งานวิชาการ) -->
+<div class="flex items-start justify-end gap-2.5 max-w-[75%] ml-auto">
+<div>
+<div class="flex items-center justify-end gap-2 mb-1">
+<span class="text-[10px] text-outline">10:32 น.</span>
+<span class="text-label-md font-label-md font-semibold text-emerald-800">อ.กิตติ (ผ่าน OA งานวิชาการ)</span>
+</div>
+<div class="p-3 bg-emerald-600 text-on-primary rounded-lg rounded-tr-none shadow-xs text-body-md font-body-md leading-relaxed">
+              สวัสดีครับ ส่งได้ถึงวันศุกร์ที่ 18 ตุลาคมนี้ครับ ส่งทางระบบออนไลน์หรือนำมายื่นที่ห้องวิชาการได้เลยครับ
+            </div>
+<div class="flex items-center justify-end gap-1 text-[10px] text-outline mt-0.5">
+<span>ส่งผ่าน LINE Messaging API แล้ว</span>
+<span class="material-symbols-outlined text-[13px] text-emerald-600" data-icon="done_all">done_all</span>
+</div>
+</div>
+<div class="w-7 h-7 rounded-full bg-emerald-700 text-on-primary font-bold flex items-center justify-center text-[11px] mt-1 flex-shrink-0">
+            ก
+          </div>
+</div>
+<!-- Inbound Message Bubble 2 (Student Bank) -->
+<div class="flex items-start gap-2.5 max-w-[75%]">
+<img alt="Bank" class="w-7 h-7 rounded-full object-cover border border-outline-variant mt-1 flex-shrink-0" data-alt="Small thumbnail avatar of Bank for student inbound conversation timeline." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAi-mys5iPagfmYeRaS403Bmfohy9TwT7Oi5oIpbw6CDTdA763RBcCDGVVoOvfLNy7PblYNoREIobgrtGy2DSbd267BT_-BmTYXNxOLDBxdIJIPylq8gECazZw841nnp9uw6oKRH1u0_9_PBzO4zdXOnIQYf0FlMsz_E4fU2Ky5qN8z9N2FxRKG45XfLkkd5JbdwOlKCAPqf7AVR0jlHjwT038u0kwapj9QBXqIJvvaz0eU8HDv_Zxc4w"/>
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="text-label-md font-label-md font-semibold text-on-surface">Bank</span>
+<span class="text-[10px] text-outline">10:34 น.</span>
+</div>
+<div class="p-3 bg-surface-container-lowest border border-outline-variant rounded-lg rounded-tl-none shadow-xs text-on-surface text-body-md font-body-md leading-relaxed">
+              เอกสารต้องมีลายเซ็นอาจารย์ที่ปรึกษาก่อนไหมครับ
+            </div>
+<span class="text-[10px] text-outline mt-0.5 block">อ่านแล้ว 10:34 น.</span>
+</div>
+</div>
+<!-- Section 20: Distinct Internal Staff Note Card (NOT sent to LINE student) -->
+<div class="mx-auto max-w-xl my-3">
+<div class="bg-amber-50/90 border border-amber-300 rounded-lg p-3 text-amber-900 shadow-xs relative">
+<div class="flex items-center justify-between pb-1.5 border-b border-amber-200 mb-1.5">
+<div class="flex items-center gap-1.5 font-semibold text-label-md font-label-md text-amber-900">
+<span class="material-symbols-outlined text-[16px] text-amber-700" data-icon="edit_note">edit_note</span>
+<span>บันทึกภายใน (Internal Staff Note)</span>
+</div>
+<span class="px-2 py-0.2 bg-amber-200/80 text-amber-900 rounded text-[10px] font-bold">เห็นเฉพาะเจ้าหน้าที่</span>
+</div>
+<p class="text-body-sm font-body-sm leading-relaxed">
+              นักศึกษาแจ้งว่าจะนำใบคำร้องที่มีลายเซ็น อ.ประวิทย์ มายื่นวันจันทร์ช่วงบ่าย ได้แจ้งขั้นตอนตรวจเช็กเบื้องต้นเรียบร้อยแล้ว
+            </p>
+<div class="flex items-center justify-between mt-2 pt-1 border-t border-amber-200 text-[10px] text-amber-800">
+<span>บันทึกโดย: อ.กิตติ เมธาการ</span>
+<span>10:35 น. · ไม่ถูกส่งเข้า LINE นักศึกษา</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Section 18: Floating Scroll-Down Pill with New Message Prompt -->
+<div class="absolute bottom-48 left-1/2 transform -translate-x-1/2 z-20">
+<button class="flex items-center gap-1.5 px-3 py-1.5 bg-on-surface text-on-error rounded-full shadow-lg hover:bg-slate-800 text-label-md font-label-md transition-all">
+<span class="material-symbols-outlined text-[16px] text-emerald-400" data-icon="arrow_downward">arrow_downward</span>
+<span>มี 1 ข้อความใหม่</span>
+</button>
+</div>
+<!-- Chat Composer (Vuetify 3 clean aesthetics & Docked bottom pane) -->
+<div class="border-t border-outline-variant bg-surface-container-lowest p-3 flex-shrink-0">
+<!-- Mode Toggle Tabs & Channel Reminder -->
+<div class="flex items-center justify-between mb-2">
+<!-- Toggle Tabs -->
+<div class="flex items-center bg-surface border border-outline-variant rounded p-0.5">
+<button class="px-3 py-1 rounded bg-surface-container-lowest text-primary font-semibold text-label-md font-label-md shadow-2xs flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px]" data-icon="chat">chat</span>
+<span>ข้อความ LINE</span>
+</button>
+<button class="px-3 py-1 rounded text-outline hover:text-on-surface text-label-md font-label-md flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px]" data-icon="note_alt">note_alt</span>
+<span>บันทึกภายใน</span>
+</button>
+</div>
+<!-- Channel Context Note -->
+<span class="text-label-sm font-label-sm text-outline flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+<span>ตอบกลับไปยัง LINE: <b>Bank</b> (ผ่าน OA งานวิชาการ)</span>
+</span>
+</div>
+<!-- Textarea input box with key commands hint -->
+<div class="relative border border-outline-variant rounded focus-within:border-primary focus-within:ring-1 focus-within:ring-primary transition-colors bg-surface-container-lowest">
+<textarea class="w-full p-2.5 text-body-md font-body-md text-on-surface bg-transparent border-0 focus:ring-0 focus:outline-none resize-none placeholder:text-outline" placeholder="พิมพ์ข้อความตอบกลับ... (กด Enter เพื่อส่ง, Shift+Enter เพื่อขึ้นบรรทัดใหม่)" rows="3"></textarea>
+<!-- Composer Toolbar & Send Action -->
+<div class="flex items-center justify-between px-2.5 py-1.5 border-t border-outline-variant/60 bg-surface">
+<!-- Left Toolbar icons -->
+<div class="flex items-center gap-1">
+<button class="p-1.5 text-outline hover:text-on-surface hover:bg-surface-container-lowest rounded transition-colors" title="Attach Image / Document">
+<span class="material-symbols-outlined text-[18px]" data-icon="attach_file">attach_file</span>
+</button>
+<button class="p-1.5 text-outline hover:text-on-surface hover:bg-surface-container-lowest rounded transition-colors flex items-center gap-1" title="Quick Templates / Canned Response">
+<span class="material-symbols-outlined text-[18px]" data-icon="bolt">bolt</span>
+<span class="text-label-sm font-label-sm hidden sm:inline">ข้อความตอบกลับเร็ว</span>
+</button>
+<button class="p-1.5 text-outline hover:text-on-surface hover:bg-surface-container-lowest rounded transition-colors" title="Insert Emoji">
+<span class="material-symbols-outlined text-[18px]" data-icon="sentiment_satisfied">sentiment_satisfied</span>
+</button>
+<button class="p-1.5 text-outline hover:text-on-surface hover:bg-surface-container-lowest rounded transition-colors" title="Send Student Assessment Link">
+<span class="material-symbols-outlined text-[18px]" data-icon="link">link</span>
+</button>
+</div>
+<!-- Right Action: Green Primary Send Button -->
+<button class="flex items-center gap-1.5 px-4 py-1.5 rounded bg-primary text-on-primary hover:bg-primary-container font-label-lg text-label-lg transition-colors shadow-2xs font-semibold">
+<span>ส่งข้อความ (Send)</span>
+<span class="material-symbols-outlined text-[16px]" data-icon="send">send</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- ================= PANE 3: Contact Sidebar & CRM Details (Width: 300px) ================= -->
+<aside aria-label="Student and Contact Details" class="w-[300px] flex-shrink-0 bg-surface-container-lowest border-l border-outline-variant flex flex-col h-full overflow-y-auto custom-scrollbar">
+<!-- Contact Profile Header -->
+<div class="p-4 border-b border-outline-variant flex flex-col items-center text-center bg-surface">
+<div class="relative mb-2">
+<img alt="Bank Profile Large" class="w-16 h-16 rounded-full object-cover border-2 border-outline-variant shadow-xs" data-alt="Formal contact card avatar for Bank student profile showing clean uniform portrait with friendly demeanor." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA68UKLXErOxIAV8WdDanFricpDANsgJsiOCUDMAS_C9zeQC_fFjL32r7GYGXF10jZLEG1U8cwDJVRkEUj0JM80LRdnPEz_U1Zm5HuGwA8ElMIt77v-pLOynLVRzGz7w9oE3ugO2g6ZoxzRBQD_zwitttl-iZGHM0Oyx2kuXDCJUqqzDhtWV_brqvMVongYnqImdfvUNkQBO1BXNy21gQkXxQ4ivlyaIeF8OiB1vqk3w4xXjAyJYECENA"/>
+<span class="absolute bottom-0 right-0 p-1 bg-emerald-500 rounded-full text-on-primary border-2 border-surface-container-lowest" title="LINE Verified">
+<span class="material-symbols-outlined text-[12px] block" data-icon="check">check</span>
+</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg font-bold text-on-surface">Bank</h3>
+<p class="text-label-sm font-label-sm text-outline">LINE Display Name</p>
+<div class="mt-2 inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-300 text-label-md font-label-md">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+<span>ติดต่อล่าสุด: งานวิชาการ</span>
+</div>
+</div>
+<!-- Student Code Section (Section 10 & 11) -->
+<div class="p-3.5 border-b border-outline-variant space-y-2">
+<div class="flex items-center justify-between">
+<span class="text-label-sm font-label-sm text-outline font-bold">รหัสนักศึกษา (STUDENT CODE)</span>
+<button class="text-primary hover:underline text-label-sm font-label-sm font-semibold flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[13px]" data-icon="edit">edit</span>
+<span>แก้ไขรหัส</span>
+</button>
+</div>
+<div class="flex items-center justify-between p-2 rounded bg-surface border border-outline-variant">
+<div>
+<span class="font-mono text-headline-md font-headline-md font-bold text-on-surface">68001234</span>
+<span class="block text-[11px] text-emerald-700 font-medium">ยืนยันตัวตนผ่านระบบแล้ว</span>
+</div>
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="verified_user">verified_user</span>
+</div>
+</div>
+<!-- LINE Multi-OA Identity Matrix (Section 13) -->
+<div class="p-3.5 border-b border-outline-variant space-y-2.5">
+<div class="flex items-center justify-between">
+<span class="text-label-sm font-label-sm text-outline font-bold">การเชื่อมโยง LINE OA ทั้งหมด (3 บัญชี)</span>
+<span class="px-1.5 py-0.2 bg-slate-100 text-slate-700 rounded text-[10px] font-mono">Unified</span>
+</div>
+<div class="space-y-1.5 text-body-sm font-body-sm">
+<!-- OA 1: Academic (Active) -->
+<div class="flex items-center justify-between p-2 rounded bg-emerald-50/60 border border-emerald-200">
+<div class="flex items-center gap-2 truncate">
+<span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></span>
+<div class="truncate">
+<span class="font-semibold text-on-surface block truncate">งานวิชาการ</span>
+<span class="text-[11px] text-outline block">ชื่อใน LINE: Bank</span>
+</div>
+</div>
+<span class="px-1.5 py-0.5 bg-emerald-600 text-on-primary rounded text-[10px] font-bold flex-shrink-0">Active</span>
+</div>
+<!-- OA 2: Registry (Linked) -->
+<div class="flex items-center justify-between p-2 rounded bg-surface border border-outline-variant">
+<div class="flex items-center gap-2 truncate">
+<span class="w-2 h-2 rounded-full bg-blue-500 flex-shrink-0"></span>
+<div class="truncate">
+<span class="font-semibold text-on-surface block truncate">งานทะเบียน</span>
+<span class="text-[11px] text-outline block">ชื่อใน LINE: Somchai</span>
+</div>
+</div>
+<span class="px-1.5 py-0.5 bg-slate-200 text-slate-700 rounded text-[10px] font-medium flex-shrink-0">Linked</span>
+</div>
+<!-- OA 3: IT Support (Linked) -->
+<div class="flex items-center justify-between p-2 rounded bg-surface border border-outline-variant">
+<div class="flex items-center gap-2 truncate">
+<span class="w-2 h-2 rounded-full bg-purple-500 flex-shrink-0"></span>
+<div class="truncate">
+<span class="font-semibold text-on-surface block truncate">IT Support</span>
+<span class="text-[11px] text-outline block">ชื่อใน LINE: B</span>
+</div>
+</div>
+<span class="px-1.5 py-0.5 bg-slate-200 text-slate-700 rounded text-[10px] font-medium flex-shrink-0">Linked</span>
+</div>
+</div>
+</div>
+<!-- Operational Attributes (Assignee, Status, Tags) -->
+<div class="p-3.5 border-b border-outline-variant space-y-3">
+<span class="text-label-sm font-label-sm text-outline font-bold block">ข้อมูลการดำเนินงาน (OPERATIONS)</span>
+<!-- Assignee -->
+<div class="flex items-center justify-between text-body-sm font-body-sm">
+<span class="text-outline">ผู้รับผิดชอบ:</span>
+<span class="font-semibold text-on-surface flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-outline" data-icon="account_circle">account_circle</span>
+            อ.กิตติ เมธาการ
+          </span>
+</div>
+<!-- Priority / Ticket Status -->
+<div class="flex items-center justify-between text-body-sm font-body-sm">
+<span class="text-outline">สถานะตั๋ว:</span>
+<span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 text-label-sm font-label-sm font-bold">Open (กำลังดำเนินการ)</span>
+</div>
+<!-- Tags -->
+<div>
+<span class="text-label-sm font-label-sm text-outline block mb-1.5">แท็กกำกับ (Tags):</span>
+<div class="flex flex-wrap gap-1">
+<span class="px-2 py-0.5 rounded bg-surface border border-outline-variant text-body-sm font-body-sm text-on-surface flex items-center gap-1">
+              #ฝึกงาน
+              <span class="material-symbols-outlined text-[12px] text-outline hover:text-error cursor-pointer" data-icon="close">close</span>
+</span>
+<span class="px-2 py-0.5 rounded bg-surface border border-outline-variant text-body-sm font-body-sm text-on-surface flex items-center gap-1">
+              #เอกสารคำร้อง
+              <span class="material-symbols-outlined text-[12px] text-outline hover:text-error cursor-pointer" data-icon="close">close</span>
+</span>
+<button class="px-2 py-0.5 rounded border border-dashed border-outline-variant text-primary hover:bg-surface text-label-md font-label-md flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[13px]" data-icon="add">add</span>
+<span>เพิ่ม Tag</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Quick Action CTAs & Unified History -->
+<div class="p-3.5 space-y-2 mt-auto">
+<button class="w-full flex items-center justify-center gap-1.5 py-2 px-3 rounded bg-surface border border-outline-variant hover:bg-surface-container text-on-surface text-label-lg font-label-lg transition-colors font-medium">
+<span class="material-symbols-outlined text-[18px] text-primary" data-icon="add_link">add_link</span>
+<span>เพิ่ม/เชื่อมโยงรหัสนักศึกษา</span>
+</button>
+<button class="w-full flex items-center justify-center gap-1.5 py-2 px-3 rounded bg-surface-container-low hover:bg-surface-container text-primary text-label-lg font-label-lg transition-colors font-semibold">
+<span class="material-symbols-outlined text-[18px]" data-icon="manage_search">manage_search</span>
+<span>ดูประวัติการติดต่อทั้งหมด (Unified)</span>
+</button>
+</div>
+<!-- Clean Modal Preview for Section 10: "เพิ่มรหัสนักศึกษา" (Strictly minimal fields: LINE Name & Student Code) -->
+<div class="p-3 m-3 rounded-lg border border-outline-variant bg-surface shadow-xs">
+<div class="flex items-center justify-between pb-1.5 border-b border-outline-variant/60 mb-2">
+<span class="font-headline-md text-headline-md font-bold text-on-surface flex items-center gap-1">
+<span class="material-symbols-outlined text-primary text-[16px]" data-icon="badge">badge</span>
+<span>บันทึกรหัสนักศึกษา (Section 10)</span>
+</span>
+<span class="text-[9px] text-outline">Minimal CRM</span>
+</div>
+<div class="space-y-2">
+<div>
+<label class="block text-label-sm font-label-sm text-outline mb-0.5">ชื่อแสดงใน LINE</label>
+<input class="w-full px-2 py-1 bg-surface-container-low border border-outline-variant rounded text-body-sm font-body-sm text-on-surface-variant cursor-not-allowed" readonly="" type="text" value="Bank"/>
+</div>
+<div>
+<label class="block text-label-sm font-label-sm text-on-surface font-semibold mb-0.5">รหัสนักศึกษา (8 หลัก)*</label>
+<input class="w-full px-2 py-1 bg-surface-container-lowest border border-outline-variant rounded text-body-sm font-body-sm text-on-surface font-mono focus:outline-none focus:border-primary" placeholder="เช่น 68001234" type="text" value="68001234"/>
+</div>
+<p class="text-[10px] text-outline leading-tight">
+            *ระบบจะเชื่อมโยงประวัติการติดต่อข้ามทุก LINE OA ทันที โดยไม่บันทึกข้อมูลที่ไม่จำเป็น
+          </p>
+<div class="flex items-center justify-end gap-1.5 pt-1">
+<button class="px-2 py-1 rounded text-outline hover:text-on-surface text-label-sm font-label-sm">ยกเลิก</button>
+<button class="px-3 py-1 rounded bg-primary text-on-primary text-label-sm font-label-sm font-semibold hover:bg-primary-container">บันทึกรหัส</button>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</body></html>
